@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using ChallangeLib;
 
 namespace Solve
@@ -7,9 +8,9 @@ namespace Solve
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-            Day1Prob1 a = new Day1Prob1();
-            a.Solution(args[0]);
+            string filePath = Path.Combine(Environment.CurrentDirectory, "data", "Day1Prob1.txt");
+            Day1Prob1 prob1 = new Day1Prob1();
+            prob1.Solution(filePath);
         }
     }
 }
