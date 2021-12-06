@@ -60,7 +60,7 @@ def solution(lines, rem_days):
 
 
 if __name__ == '__main__':
-    lines = open('./data/Day6Prob.txt','r').readlines()
+    lines = open('../data/Day6Prob.txt','r').readlines()
     lines = lines[0].split(',')
     # solution(lines, 256)
     solution1(lines, 256)
