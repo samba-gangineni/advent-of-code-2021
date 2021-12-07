@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Linq;
 
 namespace ChallangeLib
 {
@@ -7,7 +8,23 @@ namespace ChallangeLib
     {
         public void Solution(string filePath)
         {
-            string[] instructions = File.ReadAllLines(filePath);
+            int[] instructions = File.ReadAllLines(filePath)
+                                    .First()
+                                    .Split(',')
+                                    .Select(x => Int32.Parse(x))
+                                    .ToArray();
+            int maxPos = instructions.Max();
+            int minPos = instructions.Min();
+            int total = Int32.MaxValue;
+            foreach (int desiredPos in Enumerable.Range(minPos, maxPos - minPos + 1))
+            {
+                int currCost = 0;
+                foreach (int currPos in instructions)
+                    currCost += Math.Abs(desiredPos - currPos);
+                if (total > currCost)
+                    total = currCost;
+            }
+            Console.WriteLine($"{total}: minimum cost to move the submarines to the blast position");
         }
     }
 
@@ -15,7 +32,26 @@ namespace ChallangeLib
     {
         public void Solution(string filePath)
         {
-            string[] instructions = File.ReadAllLines(filePath);
+            int[] instructions = File.ReadAllLines(filePath)
+                                    .First()
+                                    .Split(',')
+                                    .Select(x => Int32.Parse(x))
+                                    .ToArray();
+            int maxPos = instructions.Max();
+            int minPos = instructions.Min();
+            int total = Int32.MaxValue;
+            foreach (int desiredPos in Enumerable.Range(minPos, maxPos - minPos + 1))
+            {
+                int currCost = 0;
+                foreach (int currPos in instructions)
+                {
+                    int diff = Math.Abs(desiredPos - currPos);
+                    currCost += (diff * (diff + 1)) / 2;
+                }
+                if (total > currCost)
+                    total = currCost;
+            }
+            Console.WriteLine($"{total}: minimum cost to move the submarines to the blast position");
         }
     }
 }
